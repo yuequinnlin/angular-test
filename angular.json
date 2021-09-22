@@ -1,6 +1,47 @@
 {
   "version": 1,
   "projects": {
+    "common-components": {
+      "projectType": "library",
+      "root": "libs/common-components",
+      "sourceRoot": "libs/common-components/src",
+      "prefix": "ils",
+      "architect": {
+        "build": {
+          "builder": "@nrwl/angular:package",
+          "outputs": ["dist/libs/common-components"],
+          "options": {
+            "project": "libs/common-components/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "libs/common-components/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "libs/common-components/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/common-components"],
+          "options": {
+            "jestConfig": "libs/common-components/jest.config.js",
+            "passWithNoTests": true
+          }
+        },
+        "lint": {
+          "builder": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "libs/common-components/src/**/*.ts",
+              "libs/common-components/src/**/*.html"
+            ]
+          }
+        }
+      }
+    },
     "ui-app": {
       "projectType": "application",
       "root": "apps/ui-app",
